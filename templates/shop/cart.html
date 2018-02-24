@@ -1,0 +1,44 @@
+{% extends 'shop/base.html' %}
+{% load thumbnail %}
+{% block content %}
+<div class="check">
+     <div class="col-md-3 cart-total">
+         <a class="continue" href="#">Продолжить покупки</a>
+         <div class="price-details">
+             <h3>Итог</h3>
+             <span>Сумма</span>
+             <span class="total1">{{ cart.get_total_price }} р.</span>
+             <span>Скидка</span>
+             <span class="total1">---</span>
+             <div class="clearfix"></div>
+         </div>
+         <ul class="total_price">
+             <li class="last_price"> <h4>Всего</h4></li>
+             <li class="last_price"><span>{{ cart.get_total_price }} р.</span></li>
+             <div class="clearfix"> </div>
+         </ul>
+         <div class="clearfix"></div>
+     </div>
+ <div class="col-md-9 cart-items">
+     <h1>Моя корзина</h1>
+     {% for item in cart %}
+         <div class="cart-header{{ item.product.id }}">
+             <div class="close{{ item.product.id }}" onclick="card_delete({{ item.product.id }}, {{ item.product.price }}, {{ item.quantity }})"> </div>
+             <div class="cart-sec simpleCart_shelfItem">
+                 <div class="cart-item cyc">
+                     <img src="{% thumbnail item.product.itemsimage_set.first.img "400" crop="center" %}" class="img-responsive" alt=""/>
+                 </div>
+                 <div class="cart-item-info">
+                     <h3><a href="{{ item.product.get_absolute_url }}">{{ item.product.name }}</a></h3>
+                     <ul class="qty">
+                         <li><p>Количество : {{ item.quantity }}</p></li>
+                         <li><p>Цена : {{ item.product.price}} р.</p></li>
+                    </ul>
+                 </div>
+                 <div class="clearfix"></div>
+             </div>
+         </div>
+     {% endfor %}
+ </div>
+</div>
+{% endblock %}

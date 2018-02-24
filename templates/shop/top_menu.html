@@ -1,0 +1,28 @@
+<li class="active grid"><a class="color10" href="{% url 'shop:home' %}">Главная</a></li>
+{% for root in top_menu %}
+    {% if root.0.top_menu %}
+    <li class="grid"><a class="color{{ forloop.counter }}" href="{{ root.0.get_absolute_url }}">{{ root.0.name }}</a>
+        <div class="megapanel">
+            <div class="row">
+            {% for key, value in root.1.items %}
+                {% if key.top_menu %}
+                <div class="col1">
+                    <div class="h_nav">
+                        <h4>{{ key.name }}</h4>
+                        <ul>
+                            {% for sub_child in value %}
+                                {% if sub_child.top_menu %}
+                                    <li><a href="{{ sub_child.get_absolute_url }}">{{ sub_child.name }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+            </div>
+        </div>
+    </li>
+    {% endif %}
+{% endfor %}
+

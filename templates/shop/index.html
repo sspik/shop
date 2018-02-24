@@ -1,0 +1,116 @@
+{% extends 'shop/base.html' %}
+{% load thumbnail %}
+
+{% block content %}
+<div class="arriv">
+    <div class="container">
+        <div class="arriv-top">
+            <div class="col-md-6 arriv-left">
+                <div class="grad-block">
+                    <img src="{% thumbnail blocks.0.img "555x386" crop="center" %}" class="img-responsive" alt="">
+                    <div class="arriv-info">
+                        <h3>{{ blocks.0.block_title }}</h3>
+                        <p>{{ blocks.0.block_desc }}</p>
+                        <div class="crt-btn">
+                            <a href="{{ blocks.0.catalog.get_absolute_url }}">{{ blocks.0.button_text }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 arriv-right">
+                <div class="grad-block">
+                    <img src="{% thumbnail blocks.1.img "555x386" crop="center" %}" class="img-responsive" alt="">
+                    <div class="arriv-info">
+                        <h3>{{ blocks.1.block_title }}</h3>
+                        <p>{{ blocks.1.block_desc }}</p>
+                        <div class="crt-btn">
+                            <a href="{{ blocks.1.catalog.get_absolute_url }}">{{ blocks.1.button_text }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <div class="arriv-bottm">
+            <div class="col-md-8 arriv-left1">
+                <div class="grad-block">
+                    <img src="{% thumbnail blocks.2.img "760x297" crop="center" %}" class="img-responsive" alt="">
+                    <div class="arriv-info1">
+                        <h3>{{ blocks.2.block_title }}</h3>
+                        <p>{{ blocks.2.block_desc }}</p>
+                        <div class="crt-btn">
+                            <a href="{{ blocks.2.catalog.get_absolute_url }}">{{ blocks.2.button_text }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 arriv-right1">
+                <div class="grad-block">
+                    <img src="{% thumbnail blocks.3.img "365x291" crop="center" %}" class="img-responsive" alt="">
+                    <div class="arriv-info2">
+                        <a href="{{ blocks.3.catalog.get_absolute_url }}"><h3>{{ blocks.3.block_title }}<i class="ars"></i></h3></a>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <div class="arriv-las">
+            <div class="col-md-4 arriv-left2">
+                <div class="grad-block">
+                    <img src="{% thumbnail blocks.4.img "370x272" crop="center" %}" class="img-responsive" alt="">
+                    <div class="arriv-info2">
+                        <a href="{{ blocks.4.catalog.get_absolute_url }}"><h3>{{ blocks.4.block_title }}<i class="ars"></i></h3></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 arriv-middle">
+                <div class="grad-block">
+                    <img src="{% thumbnail blocks.5.img "370x272" crop="center" %}" class="img-responsive" alt="">
+                    <div class="arriv-info3">
+                        <h3>{{ blocks.5.catalog.block_title }}</h3>
+                        <div class="crt-btn">
+                            <a href="{{ blocks.5.catalog.get_absolute_url }}">{{ blocks.5.button_text }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 arriv-right2">
+                <div class="grad-block">
+                    <img src="{% thumbnail blocks.6.img "370x272" crop="center" %}" class="img-responsive" alt="">
+                    <div class="arriv-info2">
+                        <a href="{{ blocks.6.catalog.get_absolute_url }}"><h3>{{ blocks.6.block_title }}<i class="ars"></i></h3></a>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<div class="special">
+    <div class="container">
+    <h3>Купить со скидкой</h3>
+        <div class="specia-top">
+            <ul class="grid_2">
+                {% for item, image in special.items %}
+                    <li>
+                        <a href="{{ item.get_absolute_url }}" class="special-item">
+
+                            <img src="{% thumbnail image "378" crop="center" %}"  class="img-responsive" alt="">
+                        </a>
+                        <div class="special-info grid_1 simpleCart_shelfItem">
+                            <h5>{{ item.name }}</h5>
+                            <div class="item_add">
+                                <span class="item_price">
+                                <h6>Всего за {{ item.price }}р</h6>
+                                </span>
+                            </div>
+                            <div class="item_add"><span class="item_price"><a href="#">Добавить в корзину</a></span></div>
+                        </div>
+                    </li>
+                {% endfor %}
+                <div class="clearfix"> </div>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

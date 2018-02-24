@@ -1,0 +1,53 @@
+{% extends 'shop/base.html' %}
+{% load staticfiles %}
+{% load thumbnail %}
+<!-- start content -->
+{% block content %}
+<div class="row single">
+    <div class="col-md-9 det">
+        <div class="single_left">
+            <div class="grid images_3_of_2">
+                <div class="sl">
+                    {% for img in item.itemsimage_set.all %}
+                        {% thumbnail img.img "290" crop="center" as im %}
+                            <div class="sl_slide"><img src="{{ im.url }}"></div>
+                        {% endthumbnail %}
+                    {% endfor %}
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="desc1 span_3_of_2">
+                <h3>{{ item.name }}</h3>
+                <span class="brand">Производитель: {% if item.brand %} {{ item.brand }} {% endif %}</span>
+                <br>
+                <p>{{ item.short_desc }}</p>
+                <div class="price">
+                    <span class="text">Цена:</span>
+                    <span class="price-new">{{ item.price }} р.</span>
+                    {% if item.old_price %}
+                    <span class="price-old">{{ item.old_price }} р.</span>
+                    {% endif %}
+                </div>
+                <div class="btn_form">
+                    <form action="{% url "cart:CartAdd" item.id %}" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="quantity">Количество</label>
+                            {{ cart_product_form.quantity }}
+                        {{ cart_product_form.update }}
+                        <input type="submit" value="Добавить в корзину">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="single-bottom1">
+            <h6>Подробнее</h6>
+            <p class="prod-desc">{{ item.detail_desc|safe }}</p>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<!-- end content -->
+{% endblock %}

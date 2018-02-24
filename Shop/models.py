@@ -11,6 +11,7 @@ from Shop.translify import translify
 from string import ascii_lowercase
 from sorl.thumbnail import ImageField
 from sorl.thumbnail import delete
+from .search import ItemIndex
 
 
 class BaseModel(models.Model):
@@ -109,6 +110,16 @@ class Item(models.Model):
 
     def get_absolute_url(self):
         return '/catalog/{}.html'.format(self.pk)
+
+    def indexing(self):
+        obj = ItemIndex(
+            meta={'id': self.id},
+            name=self.name,
+            short_desc=self.short_desc,
+            detail_desc=self.detail_desc
+        )
+        obj.save()
+        return obj.to_dict(include_meta=True)
 
 
 @python_2_unicode_compatible

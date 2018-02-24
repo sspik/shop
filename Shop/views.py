@@ -56,3 +56,16 @@ def item(request, pk):
         'item': get_item,
         'cart_product_form': cart_product_form
     })
+
+
+def search(request):
+    if request.GET.get('search'):
+        search_string = request.GET['search']
+    else:
+        return render(request, 'shop/search.html', {'data': 'none'})
+    qs_items = Item.objects.filter(name__search=search_string)
+    qs_catalog = Catalog.objects.filter(name__search=search_string)
+    return render(request, 'shop/search.html', {
+        'catalogs': qs_catalog,
+        'items': qs_items
+    })

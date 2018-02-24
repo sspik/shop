@@ -6,6 +6,7 @@ app_name = 'shop'
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
+    url(r'^search/$', views.search, name='search'),
     url(r'^catalog/(?P<pk>\d+)\.html$', views.item, name='item'),
-    url(r'^(?P<full_url>.*/)$', views.catalog, name='catalog')
+    url(r'^(?P<full_url>.*/)$', views.catalog, name='catalog'),
 ]

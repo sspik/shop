@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.postgres',
     'Shop.apps.ShopConfig',
     'properties',
     'filters',
@@ -49,7 +50,6 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
     'django_extensions',
     'cart',
-
 ]
 
 GRAPH_MODELS = {

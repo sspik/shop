@@ -23,6 +23,8 @@ function card_delete(item_id, price, qty) {
     block_price.text(new_price);
     var curQty = $('#simpleCart_quantity');
     curQty.text(curQty.text() - qty);
+    $('.total1.summ').text(new_price + ' р.');
+    $('.last_price span').text(new_price + ' р.')
 }
 
 function addToCart (item_id, price) {

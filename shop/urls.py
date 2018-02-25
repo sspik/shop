@@ -28,5 +28,6 @@ urlpatterns += staticfiles_urlpatterns()
 
 urlpatterns += [
     url(r'^cart/', include('cart.urls')),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^', include('Shop.urls')),
 ]

@@ -14,12 +14,12 @@ from django.db import models
 class Contacts(models.Model):
 
     class Meta():
-        db_table = 'contacts'
-        verbose_name = 'Контакты'
+        db_table = 'contacts_page'
+        verbose_name = 'Страница Контакты'
 
     title = models.CharField(max_length=255, verbose_name='Заголовок страницы')
     description = models.TextField(max_length=255, verbose_name='Описание страницы')
-    url = models.CharField(max_length=255, null=True, blank=True, verbose_name='URL каталога',
+    url = models.CharField(max_length=255, null=True, blank=True, verbose_name='URL страницы',
                            help_text='Оставить пустым для автозаполнения', unique=True)
     text = RichTextField()
 

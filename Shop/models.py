@@ -47,6 +47,7 @@ class Catalog(MPTTModel):
     top_menu = models.BooleanField(verbose_name='Отображать в топ-меню', default=True)
     parent = TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True)
     img = ImageField(verbose_name='Изображение', upload_to='images/%Y/%m/%d/', null=True, blank=True)
+    seo_text = RichTextField(verbose_name='СЕО Текст', null=True, blank=True)
 
     def __str__(self):
         return '{} {} - ID: {}'.format('-'*self.get_level(), self.name, str(self.id))
@@ -138,6 +139,7 @@ class HomePage(models.Model):
 
     seo_title = models.CharField(max_length=255, verbose_name='Title')
     seo_desc = models.CharField(max_length=500, verbose_name='Description')
+    seo_text = RichTextField(verbose_name='СЕО текст', null=True, blank=True)
 
     def __str__(self):
         return 'Главная страница'

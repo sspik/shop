@@ -32,7 +32,6 @@ CART_SESSION_ID = 'cart'
 # Application definition
 
 
-
 INSTALLED_APPS = [
     'suit',
     'django.contrib.admin',
@@ -149,12 +148,8 @@ USE_L10N = True
 USE_TZ = True
 
 
-CKEDITOR_CONFIGS = {
-    'awesome_ckeditor': {
-        'toolbar': 'Basic',
-    },
-}
 
+CKEDITOR_UPLOAD_PATH = "media/uploads/"
 
 # solr-thumbnail related settings
 THUMBNAIL_FORMAT = 'PNG'

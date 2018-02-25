@@ -25,21 +25,21 @@ class HomeBlockInlineAdmin(AdminImageMixin, admin.StackedInline):
         'img',
     )
 
-    def has_delete_permission(self, request, obj=None):
-        return False
+    #def has_delete_permission(self, request, obj=None):
+    #    return False
 
-    def has_add_permission(self, request, obj=None):
-        return False
+    #def has_add_permission(self, request, obj=None):
+    #    return False
 
 
 class HomeSpecialInlineAdmin(admin.StackedInline):
     model = HomeSpecial
 
-    def has_delete_permission(self, request, obj=None):
-        return False
+    #def has_delete_permission(self, request, obj=None):
+    #    return False
 
-    def has_add_permission(self, request, obj=None):
-        return False
+    #def has_add_permission(self, request, obj=None):
+    #    return False
 
 
 class HomePageAdmin(admin.ModelAdmin):

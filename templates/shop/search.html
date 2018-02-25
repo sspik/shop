@@ -1,0 +1,29 @@
+{% extends 'shop/base.html' %}
+{% load thumbnail %}
+{% block content %}
+    <div class="col-md-9">
+        {% for item in items %}
+                <div class="grid1_of_4">
+                <div class="content_box">
+                    <a class="img" href="{{ item.get_absolute_url }}">
+                        <img src="{% thumbnail item.itemsimage_set.all.0.img "191" crop="center" %}" class="img-responsive" alt=""/>
+                    </a>
+                    <h4>
+                        <a href="{{ item.get_absolute_url }}">{{ item.name }}</a>
+                    </h4>
+                    <p>
+                    {% if item.short_desc %}
+                        {{ item.short_desc }}
+                    {% elif item.brand %}
+                        {{ item.brand }}
+                    {% endif %}
+                    </p>
+                    <div class="grid_1 simpleCart_shelfItem">
+                        <div class="item_add"><span class="item_price">{{ item.price }}</span> р</div>
+                        <div class="item_add"><span class="item_price"><a href="#" onclick="addToCart({{ item.id }}, {{ item.price }})">В корзину</a></span></div>
+                    </div>
+                </div>
+                </div>
+            {% endfor %}
+    </div>
+{% endblock %}

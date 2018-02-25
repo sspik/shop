@@ -5,8 +5,10 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from django.template.context_processors import csrf
+
 from shop.settings import MEDIA_ROOT
 from cart.forms import CartAddProductForm
+from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 
 from models import *
 
@@ -63,9 +65,10 @@ def search(request):
         search_string = request.GET['search']
     else:
         return render(request, 'shop/search.html', {'data': 'none'})
-    qs_items = Item.objects.filter(name__search=search_string)
-    qs_catalog = Catalog.objects.filter(name__search=search_string)
+    qs = Item.objects.all()
+    query = SearchQuery(search_string)
+    vector = SearchVector('name', 'detail_desc')
+    qs = qs.annotate(search=vector).filter(search=query)
     return render(request, 'shop/search.html', {
-        'catalogs': qs_catalog,
-        'items': qs_items
+        'items': qs
     })

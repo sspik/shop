@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
     'django_extensions',
     'cart',
+    'ckeditor',
+    'contacts'
 ]
 
 GRAPH_MODELS = {
@@ -145,6 +147,13 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
+CKEDITOR_CONFIGS = {
+    'awesome_ckeditor': {
+        'toolbar': 'Basic',
+    },
+}
 
 
 # solr-thumbnail related settings

@@ -91,17 +91,16 @@
     <h3>Купить со скидкой</h3>
         <div class="specia-top">
             <ul class="grid_2">
-                {% for item, image in special.items %}
+                {% for elem in special %}
                     <li>
-                        <a href="{{ item.get_absolute_url }}" class="special-item">
-
-                            <img src="{% thumbnail image "378" crop="center" %}"  class="img-responsive" alt="">
+                        <a href="{{ elem.item.get_absolute_url }}" class="special-item">
+                            <img src="{% thumbnail elem.item.itemsimage_set.all.0 "378" crop="center" %}"  class="img-responsive" alt="">
                         </a>
                         <div class="special-info grid_1 simpleCart_shelfItem">
-                            <h5>{{ item.name }}</h5>
+                            <h5>{{ elem.item.name }}</h5>
                             <div class="item_add">
                                 <span class="item_price">
-                                <h6>Всего за {{ item.price }}р</h6>
+                                <h6>Всего за {{ elem.item.price }}р</h6>
                                 </span>
                             </div>
                             <div class="item_add"><span class="item_price"><a href="#">Добавить в корзину</a></span></div>

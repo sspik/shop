@@ -15,7 +15,7 @@ class FilterSelectInline(admin.TabularInline):
         }
 
 
-@admin.register(FilterCatalog)
+#@admin.register(FilterCatalog)
 class FilterCategoryAdmin(admin.ModelAdmin):
     inlines = [FilterSelectInline, ]
     list_display = ('name', 'published')
@@ -27,7 +27,7 @@ class FilterCategoryAdmin(admin.ModelAdmin):
         }
 
 
-@admin.register(FilterSelect)
+#@admin.register(FilterSelect)
 class FilterSelectAdmin(admin.ModelAdmin):
     def get_prepopulated_fields(self, request, obj=None):
         return {
@@ -35,6 +35,6 @@ class FilterSelectAdmin(admin.ModelAdmin):
         }
 
 
-@admin.register(ItemFilter)
+#@admin.register(ItemFilter)
 class ProductFilterAdmin(admin.ModelAdmin):
     pass

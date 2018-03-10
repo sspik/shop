@@ -20,7 +20,7 @@ class CatalogProperty(models.Model):
     catalog = models.ForeignKey(Catalog, verbose_name='Каталог', on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
-        return '{} {}'.format(self.name, self.catalog.name)
+        return '{} - {}'.format(self.name, self.catalog.name)
 
 
 @python_2_unicode_compatible
@@ -37,7 +37,7 @@ class ItemProperty(models.Model):
     item = models.ForeignKey(Item, verbose_name='Товар', on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
-        return self.value
+        return '{} - {}'.format(self.catalog_property.name, self.value)
 
 
 @python_2_unicode_compatible

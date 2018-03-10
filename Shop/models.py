@@ -123,6 +123,7 @@ class ItemsImage(models.Model):
 
     img = ImageField(verbose_name='Изображение', upload_to='images/%Y/%m/%d/')
     item = models.ForeignKey(Item, verbose_name='Товар', on_delete=models.CASCADE, null=True)
+    prim = models.BooleanField(verbose_name='Отображать на карточке товара', default=False)
 
     def __str__(self):
         return self.item.name

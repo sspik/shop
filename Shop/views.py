@@ -16,16 +16,16 @@ from models import *
 def home(request):
     args = {}
     args.update(csrf(request))
-    args['blocks'] = HomeBlock.objects.all().order_by('id')
+    args['blocks'] = HomeBlock.objects.all()
     special = {}
-    special_items = HomeSpecial.objects.all().order_by('id')
-    for q in special_items:
-        if q.item.itemsimage_set.all():
-            img = q.item.itemsimage_set.all()[0].img
-        else:
-            img = MEDIA_ROOT + '/noimage.png'
-        special[q.item] = img
-    args['special'] = special
+    special_items = HomeSpecial.objects.all()
+    #for q in special_items:
+    #    if q.item.itemsimage_set.all():
+    #        img = q.item.itemsimage_set.all()[0].img
+    #    else:
+    #        img = MEDIA_ROOT + '/noimage.png'
+    #    special[q.item] = img
+    args['special'] = special_items
     return render(request, 'shop/index.html', args)
 
 
@@ -41,7 +41,9 @@ def catalog(request, full_url):
         if c.level >= cat.level:
             for item in c.item_set.all():
                 items[item.pk] = [item.name, item.get_absolute_url(), item.itemsimage_set.all(),
-                                  item.short_desc, item.brand , item.price]
+                                  item.short_desc, item.brand, item.price]
+                if item.itemsimage_set.filter(prim=True):
+                    items[item.pk].append(item.itemsimage_set.filter(prim=True))
     filters = cat.catalogproperty_set.all()
     args['catalog'] = cat
     args['items'] = items

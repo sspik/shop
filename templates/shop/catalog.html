@@ -1,64 +1,68 @@
 {% extends 'shop/base.html' %}
 {% load thumbnail %}
 {% block content %}
-        <div class="col-md-3 s-d">
-            <div class="w_sidebar">
-                <div class="w_nav1">
-                    <h4>
-                        Все каталоги
-                    </h4>
-                    <ul>
-                        {% for cat in catalog.get_root.get_family %}
-                            <li><a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a></li>
+    <div class="col-md-3 s-d">
+        <div class="w_sidebar">
+            <div class="w_nav1">
+                <h4>
+                    Все каталоги
+                </h4>
+                <ul>
+                    {% for cat in catalog.get_root.get_family %}
+                        <li><a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <section  class="sky-form">
+        <h4>Фильтр</h4>
+            <div class="row1 scroll-pane">
+                <div class="col col-4">
+                    {% for filter in filters %}
+                    <div>{{ filter.name }}</div>
+                        {% for value in filter.itemproperty_set.all %}
+                            <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>{{ value }}</label>
                         {% endfor %}
-                    </ul>
+                    {% endfor %}
                 </div>
             </div>
-            <section  class="sky-form">
-            <h4>Фильтр</h4>
-                <div class="row1 scroll-pane">
-                    <div class="col col-4">
-                        {% for filter in filters %}
-                        <div>{{ filter.name }}</div>
-                            {% for value in filter.itemproperty_set.all %}
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>{{ value }}</label>
-                            {% endfor %}
-                        {% endfor %}
-                    </div>
-                </div>
-            </section>
-        </div>
+        </section>
+    </div>
 
-        <div class="col-md-9 w_content">
-            <div class="women">
-                <h4>Товаров в каталоге - {{ items|length }}</h4>
-            </div>
-            <div class="clearfix"></div>
+    <div class="col-md-9 w_content">
+        <div class="women">
+            <h4>Товаров в каталоге - {{ items|length }}</h4>
         </div>
-        <div class="col-md-9">
-            {% for k, v in items.items %}
-                <div class="grid1_of_4">
-                <div class="content_box">
-                    <a class="img" href="{{ v.1 }}">
+        <div class="clearfix"></div>
+    </div>
+    <div class="col-md-9">
+        {% for k, v in items.items %}
+            <div class="grid1_of_4">
+            <div class="content_box">
+                <a class="img" href="{{ v.1 }}">
+                    {% if v.6 %}
+                        <img src="{% thumbnail v.6.0.img "191" crop="center" %}" class="img-responsive" alt=""/>
+                    {% else %}
                         <img src="{% thumbnail v.2.0.img "191" crop="center" %}" class="img-responsive" alt=""/>
-                    </a>
-                    <h4>
-                        <a href="{{ v.1 }}">{{ v.0 }}</a>
-                    </h4>
-                    <p>
-                    {% if v.3 %}
-                        {{ v.3 }}
-                    {% elif v.4 %}
-                        {{ v.4 }}
                     {% endif %}
-                    </p>
-                    <div class="grid_1 simpleCart_shelfItem">
-                        <div class="item_add"><span class="item_price">{{ v.5 }}</span> р</div>
-                        <div class="item_add"><span class="item_price"><a href="#" onclick="addToCart({{ k }}, {{ v.5 }})">В корзину</a></span></div>
-                    </div>
+                </a>
+                <h4>
+                    <a href="{{ v.1 }}">{{ v.0 }}</a>
+                </h4>
+                <p>
+                {% if v.3 %}
+                    {{ v.3 }}
+                {% elif v.4 %}
+                    {{ v.4 }}
+                {% endif %}
+                </p>
+                <div class="grid_1 simpleCart_shelfItem">
+                    <div class="item_add"><span class="item_price">{{ v.5 }}</span> р</div>
+                    <div class="item_add"><span class="item_price"><a href="#" onclick="addToCart({{ k }}, {{ v.5 }})">В корзину</a></span></div>
                 </div>
-                </div>
-            {% endfor %}
-        </div>
+            </div>
+            </div>
+        {% endfor %}
+    </div>
 
 {% endblock %}

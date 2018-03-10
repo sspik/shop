@@ -10,8 +10,11 @@ from filters.models import FilterSelect, ItemFilter, FilterCatalog
 from properties.models import CatalogProperty, ItemProperty, Offer
 
 
-class ImagesInlineAdmin(AdminImageMixin, admin.StackedInline):
+class ImagesInlineAdmin(AdminImageMixin, admin.TabularInline):
     model = ItemsImage
+    extra = 3
+    verbose_name_plural = 'Изображения'
+    suit_classes = 'suit-tab suit-tab-images'
 
 
 class HomeBlockInlineAdmin(AdminImageMixin, admin.StackedInline):
@@ -43,6 +46,7 @@ class HomeSpecialInlineAdmin(admin.StackedInline):
 
 
 class HomePageAdmin(admin.ModelAdmin):
+
     inlines = [
         HomeBlockInlineAdmin,
         HomeSpecialInlineAdmin
@@ -149,17 +153,18 @@ class ItemAdmin(admin.ModelAdmin):
 
     inlines = [ItemPropertyInline,
                OfferInline,
-               ItemFilterInline,
+    #           ItemFilterInline,
                ImagesInlineAdmin,
                ]
     list_display = ('name',)
     list_filter = ('catalog',)
     serch_fields = ['id', 'name']
-    suit_form_tabs = (('general', 'General'),
-                      ('offers', 'Offers'),
-                      ('params', 'Params'),
-                      ('filters', 'Filters'),
-                      ('images', 'ItemsImage'),)
+    suit_form_tabs = (('general', 'Главная'),
+                      ('offers', 'Вариации'),
+                      ('params', 'Параметры'),
+   #                   ('filters', 'Фильтры'),
+                      ('images', 'Изображения'),
+                      )
 
     fieldsets = [
         ('General', {
@@ -179,15 +184,15 @@ class ItemAdmin(admin.ModelAdmin):
     ]
 
 
-class FilterCatalogAdmin(admin.ModelAdmin):
-    pass
+# class FilterCatalogAdmin(admin.ModelAdmin):
+#     pass
 
 
-class FilterSelectAdmin(admin.ModelAdmin):
-    pass
+# class FilterSelectAdmin(admin.ModelAdmin):
+#     pass
 
-class PropertiesAdmin(admin.ModelAdmin):
-    pass
+# class PropertiesAdmin(admin.ModelAdmin):
+#     pass
 
 
 admin.site.register(Catalog, CatalogAdmin)

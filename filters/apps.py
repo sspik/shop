@@ -6,3 +6,4 @@ from django.apps import AppConfig
 
 class FiltersConfig(AppConfig):
     name = 'filters'
+    verbose_name = 'Фильтры'

@@ -31,6 +31,8 @@ THUMBNAIL_DUMMY=True
 CART_SESSION_ID = 'cart'
 # Application definition
 
+INTERNAL_IPS = ['127.0.0.1']
+
 
 INSTALLED_APPS = [
     'suit',
@@ -42,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.postgres',
     'Shop.apps.ShopConfig',
+    'debug_toolbar',
     'properties',
     'filters',
     'mptt',
@@ -61,6 +64,7 @@ GRAPH_MODELS = {
 }
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -162,7 +166,7 @@ THUMBNAIL_DEBUG = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 
-_PATH = os.path.abspath(os.path.dirname(__file__))
+_PATH = "/home/spik/PycharmProjects/shop/"
 MEDIA_ROOT = os.path.join(_PATH, 'media')
 MEDIA_URL = '/media/'
 STATIC_URL = '/static/'

@@ -18,8 +18,11 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from shop import settings
+import debug_toolbar
+
 
 urlpatterns = [
+    url(r'^__debug__/', include(debug_toolbar.urls)),
     url(r'^admin/', admin.site.urls),
 ]
 

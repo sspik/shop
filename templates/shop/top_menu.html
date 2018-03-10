@@ -8,7 +8,7 @@
                 {% if key.top_menu %}
                 <div class="col1">
                     <div class="h_nav">
-                        <h4>{{ key.name }}</h4>
+                        <h4><a href="{{ key.get_absolute_url }}">{{ key.name }}</a></h4>
                         <ul>
                             {% for sub_child in value %}
                                 {% if sub_child.top_menu %}

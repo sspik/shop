@@ -55,7 +55,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <h3> <span class="simpleCart_total">{{ cart.get_total_price }}</span> р. (<span id="simpleCart_quantity" class="simpleCart_quantity">{{ cart|length }}</span> товаров)<img src="{% static 'Shop/images/bag.png' %}" alt=""></h3>
                                 </a>
                                 {% if cart|length == 0 %}
-                                <p><a href="javascript:void(0);" class="simpleCart_empty">(empty card)</a></p>
+                                <p><a href="javascript:void(0);" class="simpleCart_empty">(корзина пуста)</a></p>
                                 {% endif %}
                                 <div class="clearfix"> </div>
                             </div>

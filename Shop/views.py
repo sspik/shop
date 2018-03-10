@@ -9,10 +9,11 @@ from django.template.context_processors import csrf
 from shop.settings import MEDIA_ROOT
 from cart.forms import CartAddProductForm
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
-
+from django.views.decorators.cache import cache_page
 from models import *
 
 
+@cache_page(60 * 15)
 def home(request):
     args = {}
     args.update(csrf(request))

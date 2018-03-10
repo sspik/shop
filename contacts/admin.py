@@ -5,6 +5,12 @@ from django.contrib import admin
 from .models import *
 
 
+class AddressInlineAdmin(admin.StackedInline):
+
+    model = Address
+    extra = 1
+
+
 class EmailInlineAdmin(admin.StackedInline):
 
     model = Email
@@ -17,18 +23,12 @@ class PhoneInlineAdmin(admin.StackedInline):
     extra = 1
 
 
-class SocalInlineAdmin(admin.StackedInline):
-
-    model = Socal
-    extra = 1
-
-
 class ContactsAdmin(admin.ModelAdmin):
 
     inlines = [
+        AddressInlineAdmin,
         EmailInlineAdmin,
-        PhoneInlineAdmin,
-        SocalInlineAdmin
+        PhoneInlineAdmin
     ]
 
     def has_delete_permission(self, request, obj=None):

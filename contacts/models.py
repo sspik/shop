@@ -29,24 +29,6 @@ class Contacts(models.Model):
 
 
 @python_2_unicode_compatible
-class Socal(models.Model):
-
-    class Meta():
-        db_table = 'socal'
-        verbose_name = 'Соцсеть'
-        verbose_name_plural = ('соцсети')
-
-    name = models.CharField(max_length=255, verbose_name='Имя')
-    pub = models.BooleanField(default=True, verbose_name='Включить')
-    img = ImageField(verbose_name='Изображение', upload_to='images/%Y/%m/%d/')
-    url = models.CharField(max_length=500, verbose_name='Ссылка', null=True, blank=True)
-    parent = models.ForeignKey(Contacts, null=True)
-
-    def __str__(self):
-        return self.name
-
-
-@python_2_unicode_compatible
 class Phone(models.Model):
 
     class Meta():
@@ -80,5 +62,21 @@ class Email(models.Model):
         return self.email
 
 
+@python_2_unicode_compatible
+class Address(models.Model):
+
+    class Meta():
+        db_table = 'address'
+        verbose_name = 'Адрес'
+        verbose_name_plural = 'адреса'
+
+    address = models.CharField(max_length=255, verbose_name='Адрес')
+    pub = models.BooleanField(default=True, verbose_name='Включить')
+    primary = models.BooleanField(default=True, verbose_name='Главная?', help_text='Будет отображена в подвале')
+    parent = models.ForeignKey(Contacts, null=True)
+
+    def __str__(self):
+        return self.address
+
+
 pre_save.connect(gen_url, sender=Contacts)
-pre_delete.connect(del_img, sender=Socal)

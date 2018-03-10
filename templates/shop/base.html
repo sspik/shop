@@ -33,7 +33,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </ul>
                 </div>
                 <div class="top_left">
-                    <h2><span></span> Звони нам: +7 228 300 14 88</h2>
+                    <h2><span></span> Звони нам: {{ phones.0.phone }}</h2>
                 </div>
                 <div class="clearfix"> </div>
             </div>
@@ -50,33 +50,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <!-- start header_right -->
                     <div class="header_right">
                         <div class="rgt-bottom">
-                            <div class="log">
-                                <div class="login">
-                                    <div id="loginContainer"><a href="#" id="loginButton"><span>Login</span></a>
-                                        <div id="loginBox">
-                                            <form id="loginForm">
-                                                <fieldset id="body">
-                                                    <fieldset>
-                                                        <label for="email">Email Address</label>
-                                                        <input type="text" name="email" id="email">
-                                                    </fieldset>
-                                                    <fieldset>
-                                                        <label for="password">Password</label>
-                                                        <input type="password" name="password" id="password">
-                                                    </fieldset>
-                                                    <input type="submit" id="login" value="Sign in">
-                                                    <label for="checkbox">
-                                                        <input type="checkbox" id="checkbox"> <i>Remember me</i></label>
-                                                </fieldset>
-                                                <span><a href="#">Forgot your password?</a></span>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="reg">
-                                <a href="register.html">REGISTER</a>
-                            </div>
                             <div class="cart box_1">
                                 <a href="{% url 'cart:CartDetail'%}">
                                     <h3> <span class="simpleCart_total">{{ cart.get_total_price }}</span> р. (<span id="simpleCart_quantity" class="simpleCart_quantity">{{ cart|length }}</span> товаров)<img src="{% static 'Shop/images/bag.png' %}" alt=""></h3>
@@ -193,12 +166,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>
                 </div>
                 <div class="clearfix"> </div>
-                <li><i class="add"> </i>Jl. Haji Muhidin, Blok G no.69</li>
-                <li><i class="phone"> </i>025-2839341</li>
-                <li><a href="mailto:info@example.com"><i class="mail"> </i>info@sitename.com </a></li>
+                <li><i class="add"> </i>{{ address.0.address }}</li>
+                <li><i class="phone"> </i>{{ phones.0.phone }}</li>
+                <li><a href="mailto:info@example.com"><i class="mail"> </i>{{ emails.0.email }}</a></li>
             </div>
             <div class="clearfix"> </div>
-            <p>Copyrights © 2015 Gretong. All rights reserved | Template by <a href="http://w3layouts.com/">W3layouts</a></p>
+            <p>Все права защищены {% now "Y" %}</p>
         </div>
     </div>
 <script src="{% static 'Shop/js/megamenu.js' %}"></script>

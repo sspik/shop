@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-THUMBNAIL_DUMMY=True
+THUMBNAIL_DUMMY = True
 CART_SESSION_ID = 'cart'
 # Application definition
 

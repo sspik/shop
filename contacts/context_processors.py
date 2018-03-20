@@ -6,7 +6,7 @@ def contacts(request):
     phone = Phone.objects.filter(primary=True)
     address = Address.objects.filter(primary=True)
     return {
-        'emails': email,
-        'phones': phone,
-        'address': address
+        'emails': list(email),
+        'phones': list(phone),
+        'address': list(address)
     }

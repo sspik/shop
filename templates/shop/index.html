@@ -94,7 +94,7 @@
                 {% for elem in special %}
                     <li>
                         <a href="{{ elem.item.get_absolute_url }}" class="special-item">
-                            <img src="{% thumbnail elem.item.itemsimage_set.all.0 "378" crop="center" %}"  class="img-responsive" alt="">
+                            <img src="{% thumbnail elem.item.itemsimage_set.all.0.img "378" crop="center" %}"  class="img-responsive" alt="">
                         </a>
                         <div class="special-info grid_1 simpleCart_shelfItem">
                             <h5>{{ elem.item.name }}</h5>
@@ -103,7 +103,7 @@
                                 <h6>Всего за {{ elem.item.price }}р</h6>
                                 </span>
                             </div>
-                            <div class="item_add"><span class="item_price"><a href="#">Добавить в корзину</a></span></div>
+                            <div class="item_add"><span class="item_price"><a href="#" onclick="addToCart({{ elem.item.id }}, {{ elem.item.price }})">Добавить в корзину</a></span></div>
                         </div>
                     </li>
                 {% endfor %}

@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from django.template.context_processors import csrf
+from django.views.generic import ListView
 
 from shop.settings import MEDIA_ROOT
 from cart.forms import CartAddProductForm
@@ -13,20 +15,14 @@ from django.views.decorators.cache import cache_page
 from models import *
 
 
-@cache_page(60 * 15)
+#@cache_page(60 * 15)
 def home(request):
     args = {}
     args.update(csrf(request))
-    args['blocks'] = HomeBlock.objects.all()
-    special = {}
+    blocks = HomeBlock.objects.all()
     special_items = HomeSpecial.objects.all()
-    #for q in special_items:
-    #    if q.item.itemsimage_set.all():
-    #        img = q.item.itemsimage_set.all()[0].img
-    #    else:
-    #        img = MEDIA_ROOT + '/noimage.png'
-    #    special[q.item] = img
-    args['special'] = special_items
+    args['blocks'] = list(blocks)
+    args['special'] = list(special_items)
     return render(request, 'shop/index.html', args)
 
 
